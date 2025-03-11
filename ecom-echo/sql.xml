@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: https://sql.toad.cz/? -->
+<sql>
+<datatypes db="mysql">
+	<group label="Numeric" color="rgb(238,238,170)">
+		<type label="Integer" length="0" sql="INTEGER" quote=""/>
+	 	<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
+	 	<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
+	 	<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
+	 	<type label="INT" length="0" sql="INT" quote=""/>
+		<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
+		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
+		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+	</group>
+
+	<group label="Character" color="rgb(255,200,200)">
+		<type label="Char" length="1" sql="CHAR" quote="'"/>
+		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+		<type label="Binary" length="1" sql="BINARY" quote="'"/>
+		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+	</group>
+
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+		<type label="Date" length="0" sql="DATE" quote="'"/>
+		<type label="Time" length="0" sql="TIME" quote="'"/>
+		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+		<type label="Year" length="0" sql="YEAR" quote=""/>
+		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+	</group>
+	
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+		<type label="ENUM" length="1" sql="ENUM" quote=""/>
+		<type label="SET" length="1" sql="SET" quote=""/>
+		<type label="Bit" length="0" sql="bit" quote=""/>
+	</group>
+</datatypes><table x="226" y="39" name="Categorias">
+<row name="parent_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="slug" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="id_Media" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Media" row="id" />
+</row>
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="468" y="48" name="Media">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="file_path" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="file_name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="size" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="mime_type" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="256" y="239" name="Products">
+<row name="id_Categorias" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Categorias" row="id" />
+</row>
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="slug" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>ENUM</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="44" y="34" name="Tags">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="code" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="active" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="22" y="193" name="products_tags">
+<row name="id_Tags" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Tags" row="id" />
+</row>
+<row name="id_Products" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Products" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id_Tags</part>
+<part>id_Products</part>
+</key>
+</table>
+<table x="19" y="437" name="ProductoAttribute">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="type" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="25" y="317" name="N_producto_atributo">
+<row name="id_Products" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Products" row="id" />
+</row>
+<row name="id_ProductoAttribute" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ProductoAttribute" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id_Products</part>
+<part>id_ProductoAttribute</part>
+</key>
+</table>
+<table x="26" y="570" name="atributeValue">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="id_AtributoProducto" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ProductoAttribute" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="586" y="340" name="ProductoVariante">
+<row name="id_Products" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Products" row="id" />
+</row>
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="sku" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="stock" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_taxCategory" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="taxCategory" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="489" y="247" name="N_ProductoVariante_Media">
+<row name="id_ProductoVariante" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ProductoVariante" row="id" />
+</row>
+<row name="id_Media" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Media" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id_ProductoVariante</part>
+<part>id_Media</part>
+</key>
+</table>
+<table x="242" y="430" name="N_productoVariante_AtributoValue">
+<row name="id_atributeValue" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="atributeValue" row="id" />
+</row>
+<row name="id_ProductoVariante" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ProductoVariante" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id_atributeValue</part>
+<part>id_ProductoVariante</part>
+</key>
+</table>
+<table x="337" y="535" name="taxCategory">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="995" y="20" name="Precios">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="amount" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="id_PrecioLista" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="PrecioLista" row="id" />
+</row>
+<row name="starts_at" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="ends_at" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="822" y="92" name="PrecioLista">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="is_default" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="priority" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="595" y="45" name="N_VariantePrecio">
+<row name="id_Precios" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Precios" row="id" />
+</row>
+<row name="id_ProductoVariante" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ProductoVariante" row="id" />
+</row>
+<row name="is_active" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_ProductoVariante</part>
+<part>id_Precios</part>
+</key>
+</table>
+<table x="823" y="255" name="CartItems">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="quantity" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="unit_price" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="total_price" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="id_ProductoVariante" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ProductoVariante" row="id" />
+</row>
+<row name="id_Cart" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Cart" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="829" y="434" name="Cart">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="total_amount" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="session_id" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="id_Cliente" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Cliente" row="id" />
+</row>
+<row name="id_ShippingMethod" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ShippingMethod" row="id" />
+</row>
+<row name="expires_at" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1145" y="20" name="ClienteGroup">
+<row name="id_Precios" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Precios" row="id" />
+</row>
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="descirption" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1002" y="188" name="N_Cliente_ClienteGroup">
+<row name="id_ClienteGroup" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ClienteGroup" row="id" />
+</row>
+<row name="id_Cliente" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_Cliente</part>
+<part>id_ClienteGroup</part>
+</key>
+</table>
+<table x="624" y="539" name="OrdenItems">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="unit_price" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="quantity" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="tax_amount" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="totla_price" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="id_ProductoVariante" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ProductoVariante" row="id" />
+</row>
+<row name="id_Orders" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Orders" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="841" y="668" name="Orders">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_Cliente" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Cliente" row="id" />
+</row>
+<row name="id_ShippingAddress" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ShippingAddress" row="id" />
+</row>
+<row name="id_Currencies" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Currencies" row="id" />
+</row>
+<row name="id_ShippingMethod" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ShippingMethod" row="id" />
+</row>
+<row name="status" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="total_amount" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="tracking_number" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="tax_amount" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="order_number" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="total_items" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="subtotal" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="shipping_cost" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1009" y="286" name="Cliente">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="N_Cliente_ClienteGroup" row="id_Cliente" />
+</row>
+<row name="email" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="last_name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="phone" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="active" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="is_guest" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1209" y="288" name="ShippingAddress">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_ciudades" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ciudades" row="id" />
+</row>
+<row name="id_Cliente" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Cliente" row="id" />
+</row>
+<row name="direccion1" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="direccion2" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="postal_code" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="provincia" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="distrito" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="phone" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1266" y="548" name="Currencies">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="code" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="symbol" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1773" y="663" name="Zones">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1338" y="170" name="ciudades">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="id_Paises" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Paises" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1541" y="219" name="Paises">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="flag" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="translations" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="iso2" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="phone_code" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="id_Currencies" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Currencies" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1257" y="694" name="ShippingMethod">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="code" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="calculator_type" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="price_default" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1501" y="761" name="EligibilityCheckers">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="type" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="is_active" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="rule" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="id_ShippingMethod" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ShippingMethod" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1060" y="809" name="ShippingRules">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="max_value" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="price" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="min_value" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="type" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="id_ShippingMethod" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ShippingMethod" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1524" y="446" name="ActualCurrency">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="is_base" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="ratio" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="630" y="758" name="Payment">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_Orders" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Orders" row="id" />
+</row>
+<row name="id_PaymentMethod" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="PaymentMethod" row="id" />
+</row>
+<row name="amount" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="transaction_id" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="429" y="715" name="PaymentMethod">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="code" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1452" y="566" name="N_ActualCurrency_Currencies">
+<row name="id_Currencies" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Currencies" row="id" />
+</row>
+<row name="id_ActualCurrency" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ActualCurrency" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id_Currencies</part>
+<part>id_ActualCurrency</part>
+</key>
+</table>
+<table x="1464" y="665.6666870117188" name="N_Zones_ShippingMethod">
+<row name="id_ShippingMethod" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ShippingMethod" row="id" />
+</row>
+<row name="id_Zones" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Zones" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id_Zones</part>
+<part>id_ShippingMethod</part>
+</key>
+</table>
+<table x="1554" y="91.66668701171875" name="N_Zones_Ciudades">
+<row name="id_ciudades" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="ciudades" row="id" />
+</row>
+<row name="id_Zones" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Zones" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id_ciudades</part>
+<part>id_Zones</part>
+</key>
+</table>
+<table x="193" y="666" name="TaxRate">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="percent" null="1" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="is_default" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="id_taxCategory" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="taxCategory" row="id" />
+</row>
+<row name="id_TaxZone" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="TaxZone" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="454" y="882" name="TaxZone">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="id_Zones" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Zones" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="29" y="753.2222290039062" name="TaxRule">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="priority" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="status" null="1" autoincrement="0">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="id_TaxRate" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="TaxRate" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+</sql>
